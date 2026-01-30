@@ -1,0 +1,84 @@
+<html>
+<head>
+<title>Code Studio</title>
+<HTA:APPLICATION
+  ID="CodeStudio"
+  APPLICATIONNAME="CodeStudio"
+  BORDER="thin"
+  SCROLL="no"
+  SINGLEINSTANCE="yes"
+  WINDOWSTATE="normal"
+>
+<style>
+body {
+  font-family: Consolas, monospace;
+  background: #1e1e1e;
+  color: #d4d4d4;
+  margin: 0;
+  padding: 0;
+}
+header {
+  background: #007acc;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+}
+#editor {
+  width: 100%;
+  height: 300px;
+  background: #252526;
+  color: #d4d4d4;
+  border: none;
+  padding: 10px;
+  font-size: 14px;
+  resize: none;
+}
+button {
+  background: #007acc;
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: 4px;
+}
+button:hover {
+  background: #005a9e;
+}
+#output {
+  background: #1e1e1e;
+  border-top: 1px solid #333;
+  padding: 10px;
+  height: 150px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+</style>
+<script>
+function runCode() {
+  let code = document.getElementById("editor").value;
+  try {
+    let result = eval(code);
+    document.getElementById("output").innerText = "Result: " + result;
+  } catch (e) {
+    document.getElementById("output").innerText = "Error: " + e.message;
+  }
+}
+function clearEditor() {
+  document.getElementById("editor").value = "";
+  document.getElementById("output").innerText = "";
+}
+</script>
+</head>
+<body>
+  <header>🚀 Code Studio — Mini IDE</header>
+  <textarea id="editor">// Напиши здесь свой JavaScript код
+console.log("Hello World");
+2+2;</textarea>
+  <br>
+  <button onclick="runCode()">▶ Запустить</button>
+  <button onclick="clearEditor()">🧹 Очистить</button>
+  <div id="output"></div>
+</body>
+</html>
